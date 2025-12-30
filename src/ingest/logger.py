@@ -14,36 +14,33 @@ def create_metadata(df, station_id, file_path):
     Returns:
         dict: Metadata according to contract
     """
-
+    # Build metadata dict according to schema contract
     metadata = {
-        'ingestion_date' : datetime.now().isoformat(),
-        'source_station' : station_id,
-        'total_rows' : len(df),
-        'file_path' : str(file_path)
+        'ingestion_date': datetime.now().isoformat(),
+        'source_station': station_id,
+        'total_rows': len(df),
+        'file_path': str(file_path)
     }
-
+    
     return metadata
 
 
 def save_metadata(metadata, output_path):
     """
-    Save metafata to JSON file.
+    Save metadata to JSON file.
 
     Args:
         metadata: dict with metadata
         output_path: Path where to save JSON
     """
-
-    output_path = Path(output_path) # convert output_path
-
-    with open(output_path, 'w') as f: # open file in write mode
-        json.dump(metadata, f, indent=2) # save dict as JSON with indentation
+    output_path = Path(output_path)
+    
+    # Write metadata as formatted JSON
+    with open(output_path, 'w') as f:
+        json.dump(metadata, f, indent=2)
 
 
 def log_info(message):
-    """Simple console logging."""
-    # Create timestamp-str
+    """Simple console logging with timestamp."""
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-    # Write formated messagge
     print(f"[{timestamp}] INFO: {message}")

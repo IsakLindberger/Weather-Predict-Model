@@ -12,11 +12,12 @@ def load_schema(schema_path):
     Returns:
         dict: Schema definition
     """
-
-    schema_path = Path(schema_path) # Convert to Path-obejct
-
+    # Convert to Path object
+    schema_path = Path(schema_path)
+    
+    # Read and parse YAML file
     with open(schema_path, 'r') as f:
-        return yaml.safe_load(f) # Read YAML and return
+        return yaml.safe_load(f)
     
 
 def check_required_columns(df, schema):
@@ -30,10 +31,11 @@ def check_required_columns(df, schema):
     Returns:
         list: Missing required column names (empty if all present)
     """
-
     missing = []
-
+    
+    # Check each column in schema
     for col_name, col_info in schema['columns'].items():
+        # If column is required, verify it exists
         if col_info.get('required', False):
             if col_name not in df.columns:
                 missing.append(col_name)
@@ -52,14 +54,14 @@ def validate_dataframe(df, schema):
     Returns:
         tuple: (is_valid: bool, errors: list of str)
     """
-
     errors = []
-
+    
+    # Check for missing required columns
     missing = check_required_columns(df, schema)
-
     if missing:
         errors.append(f"Missing required columns: {missing}")
-
+    
+    # Determine if validation passed
     is_valid = len(errors) == 0
-
+    
     return (is_valid, errors)
