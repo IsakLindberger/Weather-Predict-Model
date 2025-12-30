@@ -1,0 +1,40 @@
+# Schema for train module output
+# Input: data/processed/weather_features_YYYYMMDD.parquet
+# Output: models/model_YYYYMMDD.pkl
+
+model_metadata:
+  training_date:
+    type: datetime
+    required: true
+  
+  model_type:
+    type: string
+    required: true
+    description: "Type of model (e.g., RandomForest, XGBoost)"
+  
+  feature_columns:
+    type: list
+    required: true
+    description: "List of features used for training"
+  
+  target_column:
+    type: string
+    required: true
+  
+  train_samples:
+    type: int
+    required: true
+  
+  validation_samples:
+    type: int
+    required: true
+  
+  hyperparameters:
+    type: dict
+    required: true
+
+metadata:
+  - training_date
+  - total_samples
+  - features_used
+  - model_path

@@ -1,0 +1,47 @@
+# Schema for evaluate module output
+# Input: models/model_YYYYMMDD.pkl
+# Output: data/processed/evaluation_results_YYYYMMDD.parquet
+
+metrics:
+  mae:
+    type: float64
+    required: true
+    description: "Mean Absolute Error"
+  
+  rmse:
+    type: float64
+    required: true
+    description: "Root Mean Squared Error"
+  
+  r2_score:
+    type: float64
+    required: true
+    description: "R-squared score"
+  
+  mape:
+    type: float64
+    required: false
+    description: "Mean Absolute Percentage Error"
+
+predictions_columns:
+  timestamp:
+    type: datetime64
+    required: true
+  
+  actual:
+    type: float64
+    required: true
+  
+  predicted:
+    type: float64
+    required: true
+  
+  error:
+    type: float64
+    required: true
+
+metadata:
+  - evaluation_date
+  - model_path
+  - test_samples
+  - file_path

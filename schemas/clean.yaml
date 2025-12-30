@@ -1,0 +1,37 @@
+# Schema for clean module output
+# Input: data/raw/weather_YYYYMMDD.parquet
+# Output: data/processed/weather_cleaned_YYYYMMDD.parquet
+
+columns:
+  timestamp:
+    type: datetime64
+    required: true
+    description: "Validated timestamp"
+  
+  station_id:
+    type: string
+    required: true
+    description: "Validated station identifier"
+  
+  temperature:
+    type: float64
+    required: true
+    description: "Cleaned temperature, outliers removed"
+  
+  humidity:
+    type: float64
+    required: true
+    description: "Cleaned humidity, range 0-100%"
+  
+  pressure:
+    type: float64
+    required: true
+    description: "Cleaned pressure"
+
+metadata:
+  - cleaning_date
+  - source_station
+  - total_rows
+  - rows_removed
+  - missing_values_filled
+  - file_path

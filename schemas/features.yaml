@@ -1,0 +1,45 @@
+# Schema for features module output
+# Input: data/processed/weather_cleaned_YYYYMMDD.parquet
+# Output: data/processed/weather_features_YYYYMMDD.parquet
+
+columns:
+  timestamp:
+    type: datetime64
+    required: true
+    description: "Observation timestamp"
+  
+  station_id:
+    type: string
+    required: true
+    description: "Station identifier"
+  
+  # Original features
+  temperature:
+    type: float64
+    required: true
+  
+  humidity:
+    type: float64
+    required: true
+  
+  pressure:
+    type: float64
+    required: true
+  
+  # Engineered features
+  temp_rolling_mean_24h:
+    type: float64
+    required: false
+    description: "24-hour rolling mean of temperature"
+  
+  pressure_change_1h:
+    type: float64
+    required: false
+    description: "Pressure change over last hour"
+
+metadata:
+  - feature_engineering_date
+  - source_station
+  - total_rows
+  - features_created
+  - file_path

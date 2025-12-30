@@ -1,0 +1,30 @@
+# Schema for failure module output
+# Input: data/processed/evaluation_results_YYYYMMDD.parquet
+# Output: data/processed/failure_analysis_YYYYMMDD.parquet
+
+columns:
+  timestamp:
+    type: datetime64
+    required: true
+    description: "Timestamp of failure/large error"
+  
+  error_magnitude:
+    type: float64
+    required: true
+    description: "Magnitude of prediction error"
+  
+  failure_type:
+    type: string
+    required: true
+    description: "Category of failure (e.g., extreme_weather, data_drift)"
+  
+  contributing_features:
+    type: string
+    required: false
+    description: "Features that contributed to failure"
+
+metadata:
+  - analysis_date
+  - total_failures
+  - failure_threshold
+  - file_path

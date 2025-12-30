@@ -1,0 +1,34 @@
+# Schema for ingest module output
+# Output: data/raw/weather_YYYYMMDD.parquet
+
+columns:
+  timestamp:
+    type: datetime64
+    required: true
+    description: "Observation timestamp"
+  
+  station_id:
+    type: string
+    required: true
+    description: "Weather station identifier"
+  
+  temperature:
+    type: float64
+    required: false
+    description: "Temperature in Celsius"
+  
+  humidity:
+    type: float64
+    required: false
+    description: "Relative humidity (%)"
+  
+  pressure:
+    type: float64
+    required: false
+    description: "Air pressure (hPa)"
+
+metadata:
+  - ingestion_date
+  - source_station
+  - total_rows
+  - file_path

@@ -1,0 +1,35 @@
+# Schema for survival module output
+# Input: data/processed/evaluation_results_YYYYMMDD.parquet
+# Output: data/processed/survival_analysis_YYYYMMDD.parquet
+
+columns:
+  timestamp:
+    type: datetime64
+    required: true
+    description: "Observation timestamp"
+  
+  duration:
+    type: float64
+    required: true
+    description: "Time to event/failure"
+  
+  event:
+    type: int
+    required: true
+    description: "Event indicator (0=censored, 1=event occurred)"
+  
+  station_id:
+    type: string
+    required: true
+  
+  hazard_ratio:
+    type: float64
+    required: false
+    description: "Estimated hazard ratio"
+
+metadata:
+  - analysis_date
+  - total_observations
+  - events_count
+  - censored_count
+  - file_path
